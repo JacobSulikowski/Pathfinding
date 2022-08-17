@@ -1,46 +1,46 @@
+#include "iunit.h"
 #ifndef NODE_H
 #define NODE_H
-class Node{
+class Node :public IUnit<Node>{
     private:
         int x;
         int y;
-        int gValue;
-        int hValue;
-        int fValue;
-        bool walkable;
-        bool checked;
-        bool added;
-        int previousX;
-        int previousY;
-    public:
-    
-        void resetState();
-    //setters
-        void setX(int _val);
-        void setY(int _val);
-        void setGValue(int _val);
-        void setHValue(int _val);
-        void setFValue(int _val);
-        bool equalNode(Node _node);
-        void setPreviousX(int _val);
-        void setPreviousY(int _val);
-        void setPreviousNode(int _valX,int _valY);
-        void setChecked(bool _val);
-        void setAdded(bool _val);
-        void setWalkable(bool _val);
-    //constructor
-
-    
-    //getters
+        int previousNodeX;
+        int previousNodeY;
+    public: 
+        //getters
         int getX();
         int getY();
-        int getGValue();
-        int getHValue();
-        int getFValue();
-        int getPreviousX();
-        int getPreviousY();
-        bool isChecked();
-        bool isWalkable();
-        bool isAdded();
+        int getXOfPreviousNode();
+        int getYOfPreviousNode();
+        
+        //setters
+        void setPreviousNodeX(int _val);
+        void setPreviousNodeY(int _val);
+        void setPreviousNode(int _valX,int _valY);
+        void setX(int _val);
+        void setY(int _val);
+
+        //derived methods
+        void resetstate();
+
+        void setGValue(int _val) override;
+        void setHValue(int _val) override;
+        void setFValue(int _val) override;
+        bool equalUnit(Node _unit) override;
+
+        void setChecked() override;
+        void setAdded() override;
+        void setWalkable() override;
+        
+        int getGValue() override;
+        int getHValue() override;
+        int getFValue() override;
+        bool isChecked() override;
+        bool isWalkable() override;
+        bool isAdded() override;
+
+
 };
+
 #endif

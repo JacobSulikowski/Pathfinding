@@ -1,89 +1,91 @@
 #include "node.h"
 
-void Node::setFValue(int _val){
-  this -> fValue = _val;
+int Node::getX(){
+    return x;
 }
-void Node::setGValue(int _val){
-  this -> gValue = _val;
+
+int Node::getY(){
+    return y;
 }
-void Node::setHValue(int _val){
-  this -> hValue = _val;
+
+int Node::getXOfPreviousNode(){
+    return previousNodeX;
+}
+
+int Node::getYOfPreviousNode(){
+    return previousNodeY;
+}
+
+void Node::setPreviousNodeX(int _val){
+    previousNodeX = _val;
+}
+
+void Node::setPreviousNodeY(int _val){
+    previousNodeY = _val;
+}
+void Node::setPreviousNode(int _valX,int _valY){
+   setPreviousNodeX(_valX); 
+   setPreviousNodeY(_valY);
 }
 
 void Node::setX(int _val){
-  this -> x = _val;
+    x = _val;
 }
 
 void Node::setY(int _val){
-  this -> y = _val;
+    y = _val;
 }
 
-void Node::setPreviousX(int _val){
-  this -> previousX = _val;
+void Node::setGValue(int _val){
+    GValue = _val;
 }
 
-void Node::setPreviousY(int _val){
-  this -> previousY = _val;
+void Node::setHValue(int _val){
+    HValue = _val;
 }
 
-bool Node::equalNode(Node _node){
-  if(this -> getX() == _node.getX() && this -> getY() == _node.getY()){
+void Node::setFValue(int _val){
+    FValue = _val;
+}
+
+bool Node::equalUnit(Node _unit){
+   if(this -> x == _unit.getX() && this -> y == _unit.getY()){
     return true;
-  } else {
+   } else {
     return false;
-  }
-}
-void Node::setPreviousNode(int _valX,int _valY){
-  setPreviousX(_valX);
-  setPreviousY(_valY);
+   } 
 }
 
-void Node::setChecked(bool _val){
-  this -> checked = _val;
+void Node::setChecked(){
+    checked = true;
+}
+    
+void Node::setAdded(){
+    added = true;
 }
 
-void Node::setAdded(bool _val){
-  this -> added = _val;
+void Node::setWalkable(){
+    walkable = true;
 }
 
-void Node::resetState(){
-    this ->setFValue(0);
-    this ->setGValue(0);
-    this ->setHValue(0);
+int Node::getGValue(){
+    return GValue;
 }
 
-void Node::setWalkable(bool _val){
-  this -> walkable = _val; 
+int Node::getHValue(){
+    return HValue;
 }
 
 int Node::getFValue(){
-  return fValue;
-}
-int Node::getGValue(){
-  return gValue;
-}
-int Node::getHValue(){
-  return hValue;
+    return FValue;
 }
 
-int Node::getX(){
-  return x;
-}
-int Node::getY(){
-  return y;
+bool Node::isAdded(){
+    return added;
 }
 bool Node::isChecked(){
-  return checked;
+    return checked;
 }
 bool Node::isWalkable(){
-  return walkable;
-}
-bool Node::isAdded(){
-  return added;
-}
-int Node::getPreviousX(){
-  return previousX;
-}
-int Node::getPreviousY(){
-  return previousY;
+    return walkable;
 }
