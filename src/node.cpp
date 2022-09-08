@@ -48,8 +48,8 @@ void Node::setFValue(int _val){
     FValue = _val;
 }
 
-bool Node::equalUnit(Node _unit){
-   if(this -> x == _unit.getX() && this -> y == _unit.getY()){
+bool Node::compare(Node _toCompare){
+   if(this -> x == _toCompare.getX() && this -> y == _toCompare.getY()){
     return true;
    } else {
     return false;
