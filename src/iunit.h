@@ -20,6 +20,7 @@ class IUnit : public IComparable<IUnit>{
         virtual void setAdded();
         virtual void setWalkable();
         virtual bool compare(IUnit _toCompare) override;
+        virtual void printCoordinates();
         
         virtual int getGValue();
         virtual int getHValue();

@@ -8,7 +8,7 @@ int Node::getY(){
     return y;
 }
 
-void Node::setUnit(int _valX,int _valY){
+void Node::initializeUnit(int _valX,int _valY){
     this -> setX(_valX);
     this -> setY(_valY);
     this -> resetstate();
