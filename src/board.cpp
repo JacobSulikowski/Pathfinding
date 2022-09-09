@@ -2,15 +2,15 @@
 #include <cmath>
 #include <iostream>
 
-void Board::setBoard(int _height, int _width){
-    this -> board = new Node[_height*_width];
+void Board::setPlane(int _height, int _width){
+    this -> board = new IUnit[_height*_width];
     this -> height = _height; 
     this -> width = _width;
 }
 
 Board::Board(int height,int width){
-    setBoard(height,width);
-    setNodes();
+    setPlane(height,width);
+    setUnits();
 }
 
 
@@ -18,26 +18,26 @@ Board::Board(int height,int width){
 Board::~Board(){
     delete[] board;
 }
-Node *Board::getNode(int _width, int _height){
+IUnit *Board::getUnit(int _width, int _height){
     return &board[_height * getWidth() + _width];
 }
 
 
-void Board::setStartingNode(Node *_node){
-    startingNode = _node; 
-    startingNode -> setAdded(true);
-    startingNode -> setChecked(true);
+void Board::setStartingUnit(IUnit *_unit){
+    startingNode = _unit; 
+    startingNode -> setAdded();
+    startingNode -> setChecked();
 }
 
-void Board::setEndingNode(Node *_node){
-    endingNode = _node;
+void Board::setEndingUnit(IUnit *_unit){
+    endingNode = _unit;
 }
 
-void Board::setCurrentNode(Node *_node){
-    currentNode = _node;
+void Board::setCurrentUnit(IUnit *_unit){
+    currentNode = _unit;
 }
 
-void Board::setNodes(){
+void Board::setUnits(){
     for(int y=0; y < getHeight();y++)
     { 
         for(int x=0; x < getWidth();x++){
@@ -89,9 +89,6 @@ int Board::getHeight(){
     return height;
 }
 
-Node Board::getBoard(int i){
-    return board[i];
-}
 
 std::list<Node*> Board::getNodesToAnalyze(){
     return nodesToAnalyze;
