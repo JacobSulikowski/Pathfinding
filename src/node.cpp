@@ -8,6 +8,20 @@ int Node::getY(){
     return y;
 }
 
+void Node::setUnit(int _valX,int _valY){
+    this -> setX(_valX);
+    this -> setY(_valY);
+    this -> resetstate();
+
+}
+
+void Node::resetstate(){
+    this->setPreviousUnit(0,0);
+    this->setWalkable();
+    this->setAdded();
+    this->setChecked();
+}
+
 int Node::getXOfPreviousNode(){
     return previousNodeX;
 }
@@ -23,7 +37,7 @@ void Node::setPreviousNodeX(int _val){
 void Node::setPreviousNodeY(int _val){
     previousNodeY = _val;
 }
-void Node::setPreviousNode(int _valX,int _valY){
+void Node::setPreviousUnit(int _valX,int _valY){
    setPreviousNodeX(_valX); 
    setPreviousNodeY(_valY);
 }

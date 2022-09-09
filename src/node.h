@@ -23,12 +23,15 @@ class Node : public IUnit{
         //setters
         void setPreviousNodeX(int _val);
         void setPreviousNodeY(int _val);
-        void setPreviousNode(int _valX,int _valY);
+        void setPreviousUnit(int _valX,int _valY);
         void setX(int _val);
         void setY(int _val);
 
         //derived methods
-        void resetstate();
+        void resetstate() override;
+
+        void initializeUnit(int _valX, int _valY) override;
+
 
         void setGValue(int _val) override;
         void setHValue(int _val) override;

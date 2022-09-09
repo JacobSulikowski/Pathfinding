@@ -13,6 +13,8 @@ class IUnit : public IComparable<IUnit>{
         virtual void setFValue(int _val);
 
         //Indication that setPreviousUnit() (Node) should be implemented
+        virtual void initializeUnit();
+        virtual void initializeUnit(int _valX,int _valY);
         virtual void setPreviousUnit();
         virtual void setChecked();
         virtual void setAdded();

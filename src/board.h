@@ -1,6 +1,5 @@
 #include <list>
 #include "ipathfindplane.h"
-#include "iunit.h"
 #ifndef BOARD_H
 #define BOARD_H
 

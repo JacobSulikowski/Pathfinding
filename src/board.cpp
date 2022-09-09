@@ -42,13 +42,8 @@ void Board::setUnits(){
     { 
         for(int x=0; x < getWidth();x++){
             
-            board[y * getWidth() + x].setX(x);
-            board[y * getWidth() + x].setY(y);
-            board[y * getWidth() + x].setPreviousNode(0,0);
-            board[y * getWidth() + x].setWalkable(true);
-            board[y * getWidth() + x].setAdded(false);
-            board[y * getWidth() + x].setChecked(false);
-            
+            board[y * getWidth() + x].initializeUnit(x,y);
+ 
         }
     }
 }
