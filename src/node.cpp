@@ -1,4 +1,5 @@
 #include "node.h"
+#include <iostream>
 
 int Node::getX(){
     return x;
@@ -13,6 +14,10 @@ void Node::initializeUnit(int _valX,int _valY){
     this -> setY(_valY);
     this -> resetstate();
 
+}
+
+void Node::getCoordinates(){
+    
 }
 
 void Node::resetstate(){

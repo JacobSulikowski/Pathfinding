@@ -12,22 +12,24 @@ void Pathfinder::setPathfindPlane(IPathfindPlane _pathfindPlane){
 
 void Pathfinder::printPath(){
     for(IUnit n : path){
-        n.printCoordinates();
+        std::cout<<"Node: X "<<n.getCoordinates2D().first<<" Y "<<n.getCoordinates2D().second<<std::endl;
     }
 }
 
 
 void Pathfinder::findPath(IUnit _startingNode, IUnit _endingNode){
     if(path.empty()){
-        setStartingNode(&_startingNode);
-        setEndingNode(&_endingNode);
-        setCurrentNode(&_startingNode);
-        currentNode->setChecked(true);
-        currentNode->setAdded(true);
+        pathfindPlane.setStartingUnit(&_startingNode);
+        pathfindPlane.setEndingUnit(&_endingNode);
+        pathfindPlane.setCurrentUnit(&_startingNode);
+        pathfindPlane.getCurrentUnit()->setChecked();
+        pathfindPlane.getCurrentUnit()->setAdded();
     }
     IUnit *tempNode = nullptr;
-    while(!(currentNode->equalNode(*endingNode))){
+    while(!(pathfindPlane.getCurrentUnit()->compare(*pathfindPlane.getEndingUnit()))){
+
         addNodeToAnalyze(*currentNode); 
+
         for(Node *n : nodesToAnalyze){
             analyzeNode(*n,*startingNode,*endingNode);
             if((tempNode == nullptr || (tempNode->getFValue() > n->getFValue())||
@@ -54,8 +56,8 @@ std::list<IUnit*> Pathfinder::getNodesToAnalyze(){
 
 void Pathfinder::addNodeToAnalyze(IUnit _currentNode){
 
-    int x = _currentNode.getX();
-    int y = _currentNode.getY();  
+    int x = pathfindPlane.getCurrentUnit()->getCoordinates2D().first;
+    int y = pathfindPlane.getCurrentUnit()->getCoordinates2D().second;  
     for(int i = -1;  i<2; i++){
         for(int z = -1; z<2;z++){
             if(!(i==0&&z==0) && (y+i)>=0 && (y+i)<=getHeight() && (x+z)>=0 && (x+z)<=getWidth()){

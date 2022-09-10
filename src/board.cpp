@@ -60,4 +60,15 @@ int Board::getWidth(){
 }
 
 
+IUnit* Board::getSartingUnit(){
+    return startingNode; 
+}
 
+IUnit* Board::getCurrentUnit(){
+    return currentNode; 
+}
+
+
+IUnit* Board::getEndingUnit(){
+    return endingNode; 
+}

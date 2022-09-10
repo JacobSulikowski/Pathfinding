@@ -1,12 +1,11 @@
 #include "iunit.h"
+#include <utility>
 #ifndef NODE_H
 #define NODE_H
 class Node : public IUnit{
     private:
-        int x;
-        int y;
-        int previousNodeX;
-        int previousNodeY;
+        std::pair<int,int> coordinates;
+        std::pair<int,int> previousNodeCoordinates;
         int GValue;
         int HValue;
         int FValue;
@@ -31,6 +30,8 @@ class Node : public IUnit{
         void resetstate() override;
 
         void initializeUnit(int _valX, int _valY) override;
+
+        void getCoordinates() override;
 
 
         void setGValue(int _val) override;

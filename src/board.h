@@ -21,12 +21,15 @@ class Board : public IPathfindPlane{
         int getWidth();
 
         //Derived methods
-        virtual void setPlane(int _height,int _width) override;
-        virtual IUnit *getUnit(int x,int y) override; 
-        virtual void setUnits() override;
-        virtual void setStartingUnit(IUnit *_unit) override;
-        virtual void setEndingUnit(IUnit *_unit) override;
-        virtual void setCurrentUnit(IUnit *_unit) override;
+        void setPlane(int _height,int _width) override;
+        IUnit *getUnit(int x,int y) override; 
+        void setUnits() override;
+        void setStartingUnit(IUnit *_unit) override;
+        void setEndingUnit(IUnit *_unit) override;
+        void setCurrentUnit(IUnit *_unit) override;
+        IUnit* getSartingUnit() override;
+        IUnit* getEndingUnit() override;
+        IUnit* getCurrentUnit() override;
 };
 
 

@@ -1,9 +1,10 @@
 #include "icomparable.h"
+#include "itwodimensionsunits.h"
 #ifndef UNIT_H
 #define UNIT_H
 
     
-class IUnit : public IComparable<IUnit>{ 
+class IUnit : public IComparable<IUnit>, ITwoDimensionsUnits{ 
 
     public:
         virtual void resetstate();
@@ -20,7 +21,8 @@ class IUnit : public IComparable<IUnit>{
         virtual void setAdded();
         virtual void setWalkable();
         virtual bool compare(IUnit _toCompare) override;
-        virtual void printCoordinates();
+        virtual void getCoordinates();
+        virtual std::pair<int,int> getCoordinates2D() override;
         
         virtual int getGValue();
         virtual int getHValue();

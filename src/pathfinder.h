@@ -21,6 +21,8 @@ class Pathfinder{
         void setPath();
         void setCurrentUnit(IUnit *_node);
 
+        void addNodeToAnalyze(IUnit _currentNode);
+
         std::list<IUnit*> getUnitsToAnalyze();
 
 };
