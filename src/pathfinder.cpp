@@ -12,7 +12,7 @@ void Pathfinder::setPathfindPlane(IPathfindPlane _pathfindPlane){
 
 void Pathfinder::printPath(){
     for(IUnit n : path){
-        std::cout<<"Node: X "<<n.getCoordinates2D().first<<" Y "<<n.getCoordinates2D().second<<std::endl;
+        std::cout<<"Node: X "<<n.getCoordinates().first<<" Y "<<n.getCoordinates2D().second<<std::endl;
     }
 }
 

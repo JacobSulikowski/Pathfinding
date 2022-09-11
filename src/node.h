@@ -1,8 +1,9 @@
 #include "iunit.h"
 #include <utility>
+#include "i2dunits.h"
 #ifndef NODE_H
 #define NODE_H
-class Node : public IUnit{
+class Node : public IUnit, I2DUnits{
     private:
         std::pair<int,int> coordinates;
         std::pair<int,int> previousNodeCoordinates;
@@ -14,24 +15,24 @@ class Node : public IUnit{
         bool walkable;
     public: 
         //getters
-        int getX();
-        int getY();
-        int getXOfPreviousNode();
-        int getYOfPreviousNode();
-        
+        std::pair<int,int> getPreviousNodeCoordinates2D() override; 
         //setters
-        void setPreviousNodeX(int _val);
-        void setPreviousNodeY(int _val);
         void setPreviousUnit(int _valX,int _valY);
-        void setX(int _val);
-        void setY(int _val);
+        void setUnitCoordinates(int _valX,int _valY) override;
+        void setUnitCoordinates2D(int _valX, int _valY) override;
 
         //derived methods
         void resetstate() override;
 
+        void printUnit() override;
+
         void initializeUnit(int _valX, int _valY) override;
 
+        void setPreviousUnit() override;
+        void setPreviousUnit2D(int _valX, int _valY) override;
+
         void getCoordinates() override;
+        std::pair<int,int> getCoordinates2D() override;
 
 
         void setGValue(int _val) override;

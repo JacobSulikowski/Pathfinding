@@ -1,23 +1,15 @@
 #include "node.h"
 #include <iostream>
 
-int Node::getX(){
-    return x;
-}
-
-int Node::getY(){
-    return y;
-}
 
 void Node::initializeUnit(int _valX,int _valY){
-    this -> setX(_valX);
-    this -> setY(_valY);
+    this -> setUnitCoordinates(_valX,_valY);
     this -> resetstate();
 
 }
 
 void Node::getCoordinates(){
-    
+
 }
 
 void Node::resetstate(){
@@ -27,32 +19,28 @@ void Node::resetstate(){
     this->setChecked();
 }
 
-int Node::getXOfPreviousNode(){
-    return previousNodeX;
+std::pair<int,int> Node::getPreviousNodeCoordinates2D(){
+    return previousNodeCoordinates;
 }
 
-int Node::getYOfPreviousNode(){
-    return previousNodeY;
+void Node::printUnit(){
+    std::cout<<"Node: X: "<<getCoordinates()
 }
 
-void Node::setPreviousNodeX(int _val){
-    previousNodeX = _val;
-}
-
-void Node::setPreviousNodeY(int _val){
-    previousNodeY = _val;
-}
 void Node::setPreviousUnit(int _valX,int _valY){
-   setPreviousNodeX(_valX); 
-   setPreviousNodeY(_valY);
+    setPreviousUnit2D(_valX,_valY);
+}
+void Node::setPreviousUnit2D(int _valX,int _valY){
+    this->previousNodeCoordinates.first = _valX;
+    this->previousNodeCoordinates.second = _valY;
 }
 
-void Node::setX(int _val){
-    x = _val;
+void Node::setUnitCoordinates(int _valX,int _valY){
+    setUnitCoordinates2D(_valX,_valY);
 }
-
-void Node::setY(int _val){
-    y = _val;
+void Node::setUnitCoordinates2D(int _valX,int _valY){
+    this->coordinates.first = _valX;
+    this->coordinates.second = _valY; 
 }
 
 void Node::setGValue(int _val){
@@ -68,7 +56,7 @@ void Node::setFValue(int _val){
 }
 
 bool Node::compare(Node _toCompare){
-   if(this -> x == _toCompare.getX() && this -> y == _toCompare.getY()){
+   if(this -> coordinates.first == _toCompare.getCoordinates2D().first && this -> coordinates.second == _toCompare.getCoordinates2D().second){
     return true;
    } else {
     return false;
