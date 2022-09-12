@@ -3,7 +3,7 @@
 #include "i2dunits.h"
 #ifndef NODE_H
 #define NODE_H
-class Node : public IUnit, I2DUnits{
+class Node : public IUnit{
     private:
         std::pair<int,int> coordinates;
         std::pair<int,int> previousNodeCoordinates;
@@ -18,7 +18,6 @@ class Node : public IUnit, I2DUnits{
         std::pair<int,int> getPreviousNodeCoordinates2D() override; 
         //setters
         void setPreviousUnit(int _valX,int _valY);
-        void setUnitCoordinates(int _valX,int _valY) override;
         void setUnitCoordinates2D(int _valX, int _valY) override;
 
         //derived methods
@@ -26,7 +25,7 @@ class Node : public IUnit, I2DUnits{
 
         void printUnit() override;
 
-        void initializeUnit(int _valX, int _valY) override;
+        void initializeUnit2D(int _valX, int _valY) override;
 
         void setPreviousUnit() override;
         void setPreviousUnit2D(int _valX, int _valY) override;

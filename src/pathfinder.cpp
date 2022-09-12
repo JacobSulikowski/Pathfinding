@@ -1,5 +1,6 @@
 #include <iostream>
 #include "pathfinder.h"
+#include "math.h"
 
 Pathfinder::Pathfinder(IPathfindPlane _pathfindPlane){
     setPathfindPlane(_pathfindPlane);
@@ -12,7 +13,7 @@ void Pathfinder::setPathfindPlane(IPathfindPlane _pathfindPlane){
 
 void Pathfinder::printPath(){
     for(IUnit n : path){
-        std::cout<<"Node: X "<<n.getCoordinates().first<<" Y "<<n.getCoordinates2D().second<<std::endl;
+        n.printUnit();
     }
 }
 
@@ -28,27 +29,27 @@ void Pathfinder::findPath(IUnit _startingNode, IUnit _endingNode){
     IUnit *tempNode = nullptr;
     while(!(pathfindPlane.getCurrentUnit()->compare(*pathfindPlane.getEndingUnit()))){
 
-        addNodeToAnalyze(*currentNode); 
+        addNodeToAnalyze(*pathfindPlane.getCurrentUnit()); 
 
-        for(Node *n : nodesToAnalyze){
-            analyzeNode(*n,*startingNode,*endingNode);
+        for(IUnit *n : getUnitsToAnalyze()){
+            analyzeUnit(*n,*pathfindPlane.getSartingUnit(),*pathfindPlane.getEndingUnit());
             if((tempNode == nullptr || (tempNode->getFValue() > n->getFValue())||
             (tempNode->getFValue() == n->getFValue() && tempNode->getHValue() < n->getHValue())) && n->isChecked()!= true){
                 
                 tempNode = n;
             }
-            currentNode = tempNode;
+            pathfindPlane.setCurrentUnit(tempNode);
         } 
         tempNode = nullptr;
-        currentNode -> setChecked(true);
-        std::cout<<currentNode -> getX()<<currentNode -> getY()<<std::endl;
+        pathfindPlane.getCurrentUnit() -> setChecked();
+        std::cout<<pathfindPlane.getCurrentUnit() -> getCoordinates2D().first<<pathfindPlane.getCurrentUnit() -> getCoordinates2D().second<<std::endl;
     }
     setPath();
 }
 
 
 
-std::list<IUnit*> Pathfinder::getNodesToAnalyze(){
+std::list<IUnit*> Pathfinder::getUnitsToAnalyze(){
     return nodesToAnalyze;
 }
 
@@ -60,13 +61,13 @@ void Pathfinder::addNodeToAnalyze(IUnit _currentNode){
     int y = pathfindPlane.getCurrentUnit()->getCoordinates2D().second;  
     for(int i = -1;  i<2; i++){
         for(int z = -1; z<2;z++){
-            if(!(i==0&&z==0) && (y+i)>=0 && (y+i)<=getHeight() && (x+z)>=0 && (x+z)<=getWidth()){
-               if(!(getNode(x+z,y+i)->isChecked()) && (getNode(x+z,y+i)->isWalkable()) 
-               && !(getNode(x+z,y+i)->isAdded()) && getNode(x+z,y+i)->equalNode(*startingNode) == false){ 
+            if(!(i==0&&z==0) && (y+i)>=0 && (y+i)<=pathfindPlane.getHeight() && (x+z)>=0 && (x+z)<=pathfindPlane.getWidth()){
+               if(!(pathfindPlane.getUnit(x+z,y+i)->isChecked()) && (pathfindPlane.getUnit(x+z,y+i)->isWalkable()) 
+               && !(pathfindPlane.getUnit(x+z,y+i)->isAdded()) && pathfindPlane.getUnit(x+z,y+i)->compare(*pathfindPlane.getSartingUnit()) == false){ 
 
-                    getNode(x+z,y+i)->setAdded(true);
-                    getNode(x+z,y+i)->setPreviousNode(x,y);
-                    nodesToAnalyze.push_back(getNode(x+z,y+i));
+                    pathfindPlane.getUnit(x+z,y+i)->setAdded();
+                    pathfindPlane.getUnit(x+z,y+i)->setPreviousUnit2D(x,y);
+                    nodesToAnalyze.push_back(pathfindPlane.getUnit(x+z,y+i));
                }
             }
         }
@@ -76,24 +77,24 @@ void Pathfinder::addNodeToAnalyze(IUnit _currentNode){
 
 
 void Pathfinder::setPath(){
-    path.push_front(*currentNode);
-    while(!currentNode->equalNode(*startingNode)){
-        currentNode = getNode(currentNode->getPreviousX(),currentNode->getPreviousY());
-        path.push_front(*currentNode);
+    path.push_front(*pathfindPlane.getCurrentUnit());
+    while(!pathfindPlane.getCurrentUnit()->compare(*pathfindPlane.getSartingUnit())){
+        pathfindPlane.setCurrentUnit(pathfindPlane.getUnit(pathfindPlane.getCurrentUnit()->getCoordinates2D().first,pathfindPlane.getCurrentUnit()->getCoordinates2D().second));
+        path.push_front(*pathfindPlane.getCurrentUnit());
     }
     std::cout<<"Path set"<<std::endl;
 }
 
 
 
-void Pathfinder::analyzeNode(Node &_currentNode,Node _startingNode,Node _endingNode){
+void Pathfinder::analyzeUnit(IUnit &_currentNode,IUnit _startingNode,IUnit _endingNode){
     
-    int dX = _startingNode.getX() - _currentNode.getX();
-    int dY = _startingNode.getY() - _currentNode.getY();
+    int dX = _startingNode.getCoordinates2D().first - _currentNode.getCoordinates2D().first;
+    int dY = _startingNode.getCoordinates2D().second - _currentNode.getCoordinates2D().second;
     _currentNode.setGValue(abs((sqrt(dX*dX + dY*dY))*10));
 
-    dX = _endingNode.getX() - _currentNode.getX();
-    dY = _endingNode.getY() - _currentNode.getY();
+    dX = _endingNode.getCoordinates2D().first - _currentNode.getCoordinates2D().first;
+    dY = _endingNode.getCoordinates2D().second - _currentNode.getCoordinates2D().second;
     _currentNode.setHValue(abs((sqrt(dX*dX + dY*dY))*10));
     _currentNode.setFValue(_currentNode.getHValue() + _currentNode.getGValue()); 
 }

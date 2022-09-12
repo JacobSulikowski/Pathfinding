@@ -17,8 +17,6 @@ class Board : public IPathfindPlane{
         Board(int height,int width); 
         ~Board();
         
-        int getHeight();
-        int getWidth();
 
         //Derived methods
         void setPlane(int _height,int _width) override;
@@ -30,6 +28,8 @@ class Board : public IPathfindPlane{
         IUnit* getSartingUnit() override;
         IUnit* getEndingUnit() override;
         IUnit* getCurrentUnit() override;
+        int getHeight() override;
+        int getWidth() override;
 };
 
 

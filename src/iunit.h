@@ -1,9 +1,10 @@
 #include "icomparable.h"
+#include "i2dunits.h"
 #ifndef UNIT_H
 #define UNIT_H
 
     
-class IUnit : public IComparable<IUnit>{ 
+class IUnit : public IComparable<IUnit>,public I2DUnits{ 
 
     public:
         virtual void resetstate();
@@ -14,10 +15,10 @@ class IUnit : public IComparable<IUnit>{
 
         //Indication that setPreviousUnit() (Node) should be implemented
         virtual void initializeUnit();
-        virtual void initializeUnit(int _valX,int _valY);
+        virtual void initializeUnit2D(int _valX,int _valY) override;
         virtual void setPreviousUnit();
         virtual void setUnitCoordinates();
-        virtual void setUnitCoordinates(int _valX, int _valY);
+        virtual void setUnitCoordinates2D(int _valX, int _valY) override;
         virtual void setChecked();
         virtual void setAdded();
         virtual void setWalkable();
@@ -25,6 +26,7 @@ class IUnit : public IComparable<IUnit>{
         virtual void getCoordinates();
         virtual void getPreviousNodeCoordinates();
         virtual void printUnit();
+        virtual void getUnit(int _valX, int _valY);
         
         virtual int getGValue();
         virtual int getHValue();

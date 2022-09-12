@@ -10,6 +10,7 @@ class Pathfinder{
         IUnit *endingUnit;
         IUnit *currentUnit;
         std::list<IUnit> path;
+        std::list<IUnit*> nodesToAnalyze;
     
     public:
         void setPathfindPlane(IPathfindPlane _pathfindPlane);

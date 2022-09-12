@@ -42,7 +42,7 @@ void Board::setUnits(){
     { 
         for(int x=0; x < getWidth();x++){
             
-            board[y * getWidth() + x].initializeUnit(x,y);
+            board[y * getWidth() + x].initializeUnit2D(x,y);
  
         }
     }

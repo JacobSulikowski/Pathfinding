@@ -1,9 +1,10 @@
 
 #include "iunit.h"
+#include "ipathfindplane2D.h"
 #ifndef PATHFINDPLANE_H
 #define PATHFINDPLANE_H
 
-class IPathfindPlane{ 
+class IPathfindPlane: public IPathFindPlane2D{ 
 
     public:
         virtual void setPlane(int _width,int _height);
@@ -16,6 +17,8 @@ class IPathfindPlane{
         virtual IUnit* getSartingUnit();
         virtual IUnit* getEndingUnit();
         virtual IUnit* getCurrentUnit();
+        virtual int getHeight() override;
+        virtual int getWidth() override;
 };
 
 #endif

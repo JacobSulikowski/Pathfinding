@@ -24,7 +24,7 @@ std::pair<int,int> Node::getPreviousNodeCoordinates2D(){
 }
 
 void Node::printUnit(){
-    std::cout<<"Node: X: "<<getCoordinates()
+    std::cout<<"Node: X: "<< getCoordinates2D().first<<" Y: "<< getCoordinates2D().second;
 }
 
 void Node::setPreviousUnit(int _valX,int _valY){
