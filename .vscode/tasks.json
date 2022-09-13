@@ -5,7 +5,8 @@
       "type": "shell",
       "label": "C/C++: g++ build active file",
       "command": "/usr/bin/g++",
-      "args": ["-g", "${workspaceFolder}/src/node.cpp", "-o", "${workspaceFolder}/out/${fileBasenameNoExtension}"],
+      //"args": ["-g",  "${workspaceFolder}/utils/*.cpp", "${workspaceFolder}/src/testnode.cpp", "-o", "${workspaceFolder}/out/${fileBasenameNoExtension}"],
+      "args": ["-g", "${workspaceFolder}/src/*.cpp", "-o", "${workspaceFolder}/out/${fileBasenameNoExtension}"],
       "options": {
         "cwd": "/usr/bin"
       },

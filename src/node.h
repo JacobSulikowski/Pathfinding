@@ -14,13 +14,10 @@ class Node : public IUnit{
         bool added;
         bool walkable;
     public: 
-        //getters
         std::pair<int,int> getPreviousNodeCoordinates2D() override; 
-        //setters
         void setPreviousUnit(int _valX,int _valY);
         void setUnitCoordinates2D(int _valX, int _valY) override;
 
-        //derived methods
         void resetstate() override;
 
         void printUnit() override;

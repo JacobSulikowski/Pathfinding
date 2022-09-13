@@ -2,8 +2,8 @@
 #include <iostream>
 
 
-void Node::initializeUnit(int _valX,int _valY){
-    this -> setUnitCoordinates(_valX,_valY);
+void Node::initializeUnit2D(int _valX,int _valY){
+    this -> setUnitCoordinates2D(_valX,_valY);
     this -> resetstate();
 
 }
@@ -24,7 +24,7 @@ std::pair<int,int> Node::getPreviousNodeCoordinates2D(){
 }
 
 void Node::printUnit(){
-    std::cout<<"Node: X: "<< getCoordinates2D().first<<" Y: "<< getCoordinates2D().second;
+    std::cout<<"Node: X: "<< getCoordinates2D().first<<" Y: "<< getCoordinates2D().second<<std::endl;
 }
 
 void Node::setPreviousUnit(int _valX,int _valY){
@@ -35,9 +35,6 @@ void Node::setPreviousUnit2D(int _valX,int _valY){
     this->previousNodeCoordinates.second = _valY;
 }
 
-void Node::setUnitCoordinates(int _valX,int _valY){
-    setUnitCoordinates2D(_valX,_valY);
-}
 void Node::setUnitCoordinates2D(int _valX,int _valY){
     this->coordinates.first = _valX;
     this->coordinates.second = _valY; 
