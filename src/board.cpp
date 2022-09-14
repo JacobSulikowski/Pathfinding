@@ -3,7 +3,7 @@
 #include <iostream>
 
 void Board::setPlane(int _height, int _width){
-    this -> board = new IUnit[_height*_width];
+    this -> board = new Node[_height*_width];
     this -> height = _height; 
     this -> width = _width;
 }

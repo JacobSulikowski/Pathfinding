@@ -52,7 +52,7 @@ void Node::setFValue(int _val){
     FValue = _val;
 }
 
-bool Node::compare(Node _toCompare){
+bool Node::compare(IUnit& _toCompare){
    if(this -> coordinates.first == _toCompare.getCoordinates2D().first && this -> coordinates.second == _toCompare.getCoordinates2D().second){
     return true;
    } else {

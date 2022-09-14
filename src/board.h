@@ -2,7 +2,6 @@
 #include "ipathfindplane.h"
 #ifndef BOARD_H
 #define BOARD_H
-
 class Board : public IPathfindPlane{
 
     private:

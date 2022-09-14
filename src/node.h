@@ -13,6 +13,14 @@ class Node : public IUnit{
         bool checked;
         bool added;
         bool walkable;
+
+
+
+        void initializeUnit() override {};
+        void setUnitCoordinates() override {};
+        void getPreviousNodeCoordinates() override {};
+
+
     public: 
         std::pair<int,int> getPreviousNodeCoordinates2D() override; 
         void setPreviousUnit(int _valX,int _valY);
@@ -21,6 +29,7 @@ class Node : public IUnit{
         void resetstate() override;
 
         void printUnit() override;
+
 
         void initializeUnit2D(int _valX, int _valY) override;
 
@@ -35,7 +44,7 @@ class Node : public IUnit{
         void setHValue(int _val) override;
         void setFValue(int _val) override;
 
-        bool compare(Node _toCompare);
+        bool compare(IUnit& _toCompare) override;
         void setChecked() override;
         void setAdded() override;
         void setWalkable() override;

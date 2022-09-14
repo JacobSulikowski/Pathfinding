@@ -4,6 +4,6 @@ template <class T>
 class IComparable {
 
     public:
-        virtual bool compare(T _toCompare);
+        virtual bool compare(T& _toCompare) =0;
 };
 #endif
