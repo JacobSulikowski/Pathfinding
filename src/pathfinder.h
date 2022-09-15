@@ -1,30 +1,30 @@
 #include <list>
-#include "ipathfindplane.h"
+#include "ipathfindspace.h"
 #ifndef PATHFINDER_H
 #define PATHFINDER_H
 class Pathfinder{
     private:
-        Pathfinder(IPathfindPlane _pathfindPlane);
-        IPathfindPlane pathfindPlane;
-        IUnit *startingUnit;
-        IUnit *endingUnit;
-        IUnit *currentUnit;
-        std::list<IUnit> path;
-        std::list<IUnit*> nodesToAnalyze;
+        Pathfinder(IPathfindSpace& _pathfindSpace);
+        IPathfindSpace* pathfindSpace;
+        Unit *startingUnit;
+        Unit *endingUnit;
+        Unit *currentUnit;
+        std::list<Unit> path;
+        std::list<Unit*> unitsToAnalyze;
     
     public:
-        void setPathfindPlane(IPathfindPlane _pathfindPlane);
-        void findPath(IUnit _startingUnit,IUnit _endingUnit);
-        void addUnitToAnalyze(IUnit _currentUnit);
+        void setPathfindSpace(IPathfindSpace& _pathfindPlane);
+        void findPath(Unit _startingUnit,Unit _endingUnit);
+        void addUnitToAnalyze(Unit _currentUnit);
         void clearUnitToAnalyze();
-        void analyzeUnit(IUnit &_nodesToAnalyze, IUnit _startingNode,IUnit _endingNode);
+        void analyzeUnit(Unit &_nodesToAnalyze, Unit _startingNode,Unit _endingNode);
         void printPath();
         void setPath();
-        void setCurrentUnit(IUnit *_node);
+        void setCurrentUnit(Unit *_node);
 
-        void addNodeToAnalyze(IUnit _currentNode);
+        void addNodeToAnalyze(Unit _currentNode);
 
-        std::list<IUnit*> getUnitsToAnalyze();
+        std::list<Unit*> getUnitsToAnalyze();
 
 };
     

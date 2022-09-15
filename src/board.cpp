@@ -3,7 +3,7 @@
 #include <iostream>
 
 void Board::setPlane(int _height, int _width){
-    this -> board = new Node[_height*_width];
+    this -> board = new Unit[_height*_width];
     this -> height = _height; 
     this -> width = _width;
 }
@@ -18,22 +18,22 @@ Board::Board(int height,int width){
 Board::~Board(){
     delete[] board;
 }
-IUnit *Board::getUnit(int _width, int _height){
+Unit *Board::getUnit(int _width, int _height){
     return &board[_height * getWidth() + _width];
 }
 
 
-void Board::setStartingUnit(IUnit *_unit){
+void Board::setStartingUnit(Unit *_unit){
     startingNode = _unit; 
     startingNode -> setAdded();
     startingNode -> setChecked();
 }
 
-void Board::setEndingUnit(IUnit *_unit){
+void Board::setEndingUnit(Unit *_unit){
     endingNode = _unit;
 }
 
-void Board::setCurrentUnit(IUnit *_unit){
+void Board::setCurrentUnit(Unit *_unit){
     currentNode = _unit;
 }
 
@@ -60,15 +60,15 @@ int Board::getWidth(){
 }
 
 
-IUnit* Board::getSartingUnit(){
+Unit* Board::getSartingUnit(){
     return startingNode; 
 }
 
-IUnit* Board::getCurrentUnit(){
+Unit* Board::getCurrentUnit(){
     return currentNode; 
 }
 
 
-IUnit* Board::getEndingUnit(){
+Unit* Board::getEndingUnit(){
     return endingNode; 
 }

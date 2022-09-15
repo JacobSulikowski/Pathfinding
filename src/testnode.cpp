@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../utils/test.h"
-#include "node.h"
+#include "unit.h"
 
 
 //TODO: Diagonal pathfinding works well weird anomalys when setting sNode and eNode in 0,0 10,10;
@@ -18,7 +18,7 @@ int main()
 
 
 void TestGetCooridnates2D(){
-  Node testNode;
+  Unit testNode;
   Test::TEST_EQ("TestGetCoordinates2DX",testNode.getCoordinates2D().first,0);
 }
 

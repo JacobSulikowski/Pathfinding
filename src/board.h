@@ -1,16 +1,16 @@
 #include <list>
-#include "ipathfindplane.h"
+#include "ipathfindspace.h"
 #ifndef BOARD_H
 #define BOARD_H
-class Board : public IPathfindPlane{
+class Board : public IPathfindSpace{
 
     private:
         int height;
         int width;
-        IUnit* board; 
-        IUnit* startingNode;
-        IUnit* endingNode;
-        IUnit* currentNode;
+        Unit* board; 
+        Unit* startingNode;
+        Unit* endingNode;
+        Unit* currentNode;
 
     public:
         Board(int height,int width); 
@@ -19,14 +19,14 @@ class Board : public IPathfindPlane{
 
         //Derived methods
         void setPlane(int _height,int _width) override;
-        IUnit *getUnit(int x,int y) override; 
+        Unit *getUnit(int x,int y) override; 
         void setUnits() override;
-        void setStartingUnit(IUnit *_unit) override;
-        void setEndingUnit(IUnit *_unit) override;
-        void setCurrentUnit(IUnit *_unit) override;
-        IUnit* getSartingUnit() override;
-        IUnit* getEndingUnit() override;
-        IUnit* getCurrentUnit() override;
+        void setStartingUnit(Unit *_unit) override;
+        void setEndingUnit(Unit *_unit) override;
+        void setCurrentUnit(Unit *_unit) override;
+        Unit* getSartingUnit() override;
+        Unit* getEndingUnit() override;
+        Unit* getCurrentUnit() override;
         int getHeight() override;
         int getWidth() override;
 };
